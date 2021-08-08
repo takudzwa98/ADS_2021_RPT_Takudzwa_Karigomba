@@ -41,4 +41,28 @@ public:
             delete array;
     }
 
+    void push(const T& newT) {
+        if (!arrayData)
+        {
+            this->arrayData = new T[this->growSize];
+        }
+        if (size >= (capacity - 1))
+        {
+           
+            T* newArray = new T[this->capacity + this->growSize];
+            
+            for (int i = 0; i < size; i++)
+            {
+                  newArray[i] = this->arrayData[i];
+            }
+            
+            delete this->array;
+           
+                  this->arrayData = newArray;
+            
+            this->capacity += this->growSize;
+    
+      
+    }
+#endif
 };
