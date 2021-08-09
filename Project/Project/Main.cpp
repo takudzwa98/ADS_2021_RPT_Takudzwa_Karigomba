@@ -4,14 +4,21 @@ using namespace std;
 
 int main()
 {
-    OrderedArray<int> testArray(6);
+    OrderedArray<int> array(6);
  
-    testArray.push(9);
-    testArray.push(5);
-    testArray.push(3);
-    testArray.push(10);
-    testArray.push(7);
-    testArray.push(2);
+    array.push(9);
+    array.push(5);
+    array.push(3);
+    array.push(10);
+    array.push(7);
+    array.push(2);
+
+    cout << "Array: ";
+    for (int i = 0; i < array.length(); i++)
+    {
+        cout << array.getElement(i) << " ";
+    }
+    cout << endl;
 
    
 }

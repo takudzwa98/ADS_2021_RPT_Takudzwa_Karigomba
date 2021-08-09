@@ -1,8 +1,3 @@
-
-#ifndef ORDEREDARRAY_H_
-#define ORDEREDARRAY_H_
-
-
 template<class T>
 class OrderedArray
 {
@@ -41,28 +36,60 @@ public:
             delete array;
     }
 
-    void push(const T& newT) {
-        if (!arrayData)
+    void push(const T& newElement) {
+        if (!array)
         {
-            this->arrayData = new T[this->growSize];
+            this->array = new T[this->growSize];
         }
         if (size >= (capacity - 1))
         {
-           
+
             T* newArray = new T[this->capacity + this->growSize];
-            
+
             for (int i = 0; i < size; i++)
             {
-                  newArray[i] = this->arrayData[i];
+                newArray[i] = this->array[i];
             }
-            
+
             delete this->array;
-           
-                  this->arrayData = newArray;
-            
+
+            this->array = newArray;
+
             this->capacity += this->growSize;
-    
-      
+
+
+        }
+        int i = 0;
+        for (i = 0; i < this->size; i++)
+        {
+
+            if (this->arrayData[i] > newElement)
+            {
+                break;
+            }
+        }
+
+        for (int j = this->size; j > i; j--)
+        {
+            this->arrayData[j] = this->arrayData[j - 1];
+
+            this->arrayData[i] = newElement;
+
+            this->size += 1;
+        }
     }
-#endif
+
+int length()
+{
+   return this->size;
+}
+
+ T getElement(int index)
+        {
+            if (index < 0 || index > this->size)
+            {
+                return T();
+            }
+            return this->array[index];
+        }
 };
