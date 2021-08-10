@@ -19,6 +19,6 @@ int main()
         cout << array.getElement(i) << " ";
     }
     cout << endl;
-
+    cout
    
 }
