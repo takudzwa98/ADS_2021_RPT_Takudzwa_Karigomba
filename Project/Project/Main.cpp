@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {
     OrderedArray<int> array(6);
- 
+
     array.push(9);
     array.push(5);
     array.push(3);
@@ -19,6 +19,6 @@ int main()
         cout << array.getElement(i) << " ";
     }
     cout << endl;
-    cout
-   
+
+
 }

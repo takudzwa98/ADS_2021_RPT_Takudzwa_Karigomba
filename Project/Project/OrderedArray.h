@@ -26,7 +26,7 @@ public:
         this->capacity = 0;
     }
 
-    // Destructor.
+    // Destructor 
     ~OrderedArray()
     {
         this->growSize = 0;
@@ -35,54 +35,45 @@ public:
         if (this->array)
             delete array;
     }
-
-    void push(const T& newElement) {
-        if (!array)
+   // putting an element into the array in order
+void push(const T& newElement)
+{
+    if (size >= (capacity - 1))
         {
-            this->array = new T[this->growSize];
-        }
-        if (size >= (capacity - 1))
-        {
-
-            T* newArray = new T[this->capacity + this->growSize];
-
+            T* newArrayData = new T[this->capacity + this->growSize];
             for (int i = 0; i < size; i++)
             {
-                newArray[i] = this->array[i];
+                newArrayData[i] = this->array[i];
             }
-
             delete this->array;
-
-            this->array = newArray;
-
+            this->array = newArrayData;
             this->capacity += this->growSize;
-
-
         }
-        int i = 0;
+       
+int i = 0;
         for (i = 0; i < this->size; i++)
         {
-
-            if (this->arrayData[i] > newElement)
+       
+            if (this->array[i] > newElement)
             {
                 break;
             }
         }
-
+    
         for (int j = this->size; j > i; j--)
         {
-            this->arrayData[j] = this->arrayData[j - 1];
-
-            this->arrayData[i] = newElement;
-
-            this->size += 1;
+            this->array[j] = this->array[j - 1];
         }
-    }
+        this->array[i] = newElement;
 
+        this->size += 1;
+    }
+//returning array elements
 int length()
 {
    return this->size;
 }
+//returning a copy of the element corresponding to the given index
 
  T getElement(int index)
         {
