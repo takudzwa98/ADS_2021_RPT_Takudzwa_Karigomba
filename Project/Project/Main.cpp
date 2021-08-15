@@ -20,5 +20,12 @@ int main()
     }
     cout << endl;
 
+    cout << "Clear: ";
+    for (int i = 0; i < array.length(); i++)
+    {
+        cout << array.clear << " ";
+    }
+    
+
 
 }

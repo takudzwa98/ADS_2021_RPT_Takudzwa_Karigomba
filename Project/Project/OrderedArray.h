@@ -83,4 +83,12 @@ int length()
             }
             return this->array[index];
         }
+
+ void clear()
+ {
+     if (this->array)
+         delete this->array;
+     this->array = NULL;
+     this->size = 0;
+ }
 };
