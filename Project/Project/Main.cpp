@@ -20,12 +20,14 @@ int main()
     }
     cout << endl;
 
-    cout << "Clear: ";
+   
+    array.clear();
+    cout << "Clear Array: ";
     for (int i = 0; i < array.length(); i++)
     {
-        cout << array.clear << " ";
+        cout << array.getElement(i) << " ";
     }
-    
-
+    cout << endl;
+    return 0;
 
 }

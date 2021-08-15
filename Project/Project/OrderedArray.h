@@ -91,4 +91,14 @@ int length()
      this->array = NULL;
      this->size = 0;
  }
+
+ bool remove(int index)
+ {
+     if (index < 0 || index > this.size )
+     {
+         return false;
+     }
+     
+         
+ }
 };
