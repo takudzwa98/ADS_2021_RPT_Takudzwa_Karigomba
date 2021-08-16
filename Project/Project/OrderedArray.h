@@ -98,7 +98,12 @@ int length()
      {
          return false;
      }
-     
+     for (int i = index; i < this->size - 1; i++)
+     {
+         this->array[i] = this->array[i + 1];
+     }
+     this->size = -1;
+     return true;
          
  }
 };
