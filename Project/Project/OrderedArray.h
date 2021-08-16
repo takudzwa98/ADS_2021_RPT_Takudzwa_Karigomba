@@ -102,7 +102,7 @@ int length()
      {
          this->array[i] = this->array[i + 1];
      }
-     this->size = -1;
+     this->size -= 1;
      return true;
          
  }

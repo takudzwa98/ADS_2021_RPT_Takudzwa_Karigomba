@@ -20,6 +20,8 @@ int main()
     }
     cout << endl;
 
+    cout << "Remove 4 in array: " << (array.remove(4) ? "Successful" : "Failed") << endl;
+
    
     array.clear();
     cout << "Clear Array: ";
