@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {
     OrderedArray<int> array(6);
-    //push method
+    //push meth
     array.push(9);
     array.push(5);
     array.push(3);
@@ -31,7 +31,7 @@ int main()
     }
     cout << endl;
 
-
+    cout << "Does it Exists? : " << (array.search(30) ? "Exist":" Not found") << endl;
 
     //clear method
     array.clear();
@@ -41,6 +41,12 @@ int main()
         cout << array.getElement(i) << " ";
     }
     cout << endl;
-    return 0;
+   
 
+    cout << "Array after clear: ";
+    for (int i = 0; i < array.length(); i++)
+    {
+        cout << array.getElement(i) << " ";
+    }
+    cout << endl;
 }

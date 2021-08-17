@@ -106,14 +106,19 @@ int length()
      return true;
          
  }
+ 
  int search(const T& target)
  {
      for (int i = 0; i < this->size; i++)
      {
          if (this->array[i] == target)
          {
-            
-             return target;
+
+             return i;
          }
+
+         return -1;
+     }
+ }
 
 };
