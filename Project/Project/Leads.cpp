@@ -43,7 +43,37 @@ int main()
 			first_leads.push_back(lead);
 		}
 	else
-
 		cout << "Could not open file: " << file1 << endl;
+
+	
+	vector<Lead> second_leads;
+
+ifstream secondFile(file2);
+	if (secondFile.is_open())
+	{
+		while (getline(secondFile, line))
+		{
+			row.clear();
+			stringstream s(line);
+			while (getline(s, word, ','))
+			{
+				row.push_back(word);
+			}
+			Lead lead;
+			lead.first_name = row[0];
+			lead.last_name = row[1];
+			lead.description = row[2];
+			lead.phone_number = row[3];
+			second_leads.push_back(lead);
+		}
+
+		secondFile.close();
+	}
+	else
+		cout << "Could not open file: " << file1 << endl;
+
+	cout << "Read " << first_leads.size() << " leads from first file and " << second_leads.size() << " from second file" << endl;
+
+	
 
 	}
