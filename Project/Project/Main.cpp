@@ -32,7 +32,7 @@ int main()
     cout << endl;
 
     cout << "Does it Exists? : " << (array.search(3) ? "Yes" : " Not found") << endl;
-
+   
     //clear method
     array.clear();
     cout << "Clear Array: ";

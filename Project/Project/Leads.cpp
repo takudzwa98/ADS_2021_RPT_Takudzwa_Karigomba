@@ -2,8 +2,8 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-using namespace std;
 #include <vector>
+using namespace std;
 
 struct Lead
 {
@@ -13,57 +13,71 @@ struct Lead
 	string phone_number;
 };
 
+
 int main()
 {
+
 	vector<Lead> first_leads;
+	vector<Lead> second_leads;
 
-	cout << "Name of file 1: ";
+	string file1;
+	cout << "Enter the name of the first file: ";
 	getline(cin, file1);
+	string file2;
+	cout << "Enter the name of the second file: ";
+	getline(cin, file2);
 
-	vector<string> filerow;
-	string line; 
+	//to store each row of elements
+	vector<string> variables;
+
+
+	string line; // to store each line
 	string word;
 
+	// open 1st file
 	ifstream firstFile(file1);
 	if (firstFile.is_open())
 	{
 		while (getline(firstFile, line))
 		{
+			variables.clear();
 			stringstream s(line);
 			while (getline(s, word, ','))
 			{
-				firstrow.push_back(word);
+				variables.push_back(word);
 			}
 
 			Lead lead;
-			lead.first_name = filerow[0];
-			lead.last_name = filerow[1];
-			lead.description = filerow[2];
-			lead.phone_number = filerow[3];
+			lead.first_name = variables[0];
+			lead.last_name = variables[1];
+			lead.description = variables[2];
+			lead.phone_number = variables[3];
 			first_leads.push_back(lead);
 		}
+		firstFile.close();
+	}
 	else
 		cout << "Could not open file: " << file1 << endl;
 
-	
-	vector<Lead> second_leads;
 
-ifstream secondFile(file2);
+	ifstream secondFile(file2);
+
 	if (secondFile.is_open())
 	{
 		while (getline(secondFile, line))
 		{
-			row.clear();
+			variables.clear();
 			stringstream s(line);
 			while (getline(s, word, ','))
 			{
-				row.push_back(word);
+				variables.push_back(word);
 			}
+
 			Lead lead;
-			lead.first_name = row[0];
-			lead.last_name = row[1];
-			lead.description = row[2];
-			lead.phone_number = row[3];
+			lead.first_name = variables[0];
+			lead.last_name = variables[1];
+			lead.description = variables[2];
+			lead.phone_number = variables[3];
 			second_leads.push_back(lead);
 		}
 
@@ -74,23 +88,85 @@ ifstream secondFile(file2);
 
 	cout << "Read " << first_leads.size() << " leads from first file and " << second_leads.size() << " from second file" << endl;
 
-	
+
+
+	vector<Lead> first_unique;
+	vector<Lead> second_unique;
+	vector<Lead> common;
+
+
 	bool found;
 	for (int i = 0; i < first_leads.size(); i++)
 	{
-		Lead lead1 = first_leads[i];
+		Lead leadi = first_leads[i];
 		found = false;
-		for (int j = 0; j < second_leads.size(); j++)
-		{
-			Lead lead2 = second_leads[j];
 
-			//compraing 2 no.
-			if (lead1.phone_number.compare(lead2.phone_number) == 0)
+		// Iterate  leads from second file
+		for (int s = 0; s < second_leads.size(); s++)
+		{
+			Lead leads = second_leads[s];
+
+			// check if there is a lead in common
+			if (leadi.phone_number.compare(leads.phone_number) == 0)
 			{
 				found = true;
+				break;
 			}
 
 		}
 
-		
+		if (!found) // unique for first file if lead1 is not in second file
+		{
+			first_unique.push_back(leadi);
+		}
+		else // it is common
+		{
+			bool found = false;
+			for (int c = 0; c < common.size(); c++)
+			{
+				Lead lead = common[c];
+				if (lead.phone_number.compare(leadi.phone_number) == 0)
+				{
+					found = true;
+					break;
+				}
+			}
+			if (!found)
+				common.push_back(leadi);
+		}
+	}
+	cout << "There are " << first_unique.size() << " unique leads in first file, " << second_unique.size() << " unique leads in second file and " << common.size() << " common leads." << endl;
+
+
+
+	string output_file1_name = "file1_unique.csv";
+	ofstream outputFile1(output_file1_name);
+	for (int i = 0; i < first_unique.size(); i++)
+	{
+		Lead lead = first_unique[i];
+		outputFile1 << lead.first_name << "," << lead.last_name << "," << lead.description << "," << lead.phone_number << endl;
+	}
+	outputFile1.close();
+
+	string output_file2 = "file2_unique.csv";
+	ofstream outputFile2(output_file2);
+	for (int i = 0; i < second_unique.size(); i++)
+	{
+		Lead lead = second_unique[i];
+		outputFile2 << lead.first_name << "," << lead.last_name << "," << lead.description << "," << lead.phone_number << endl;
+	}
+
+	outputFile2.close();
+
+	string output_common = "common.csv";
+	ofstream outputFile(output_common);
+	for (int i = 0; i < common.size(); i++)
+	{
+		Lead lead = common[i];
+		outputFile << lead.first_name << "," << lead.last_name << "," << lead.description << "," << lead.phone_number << endl;
+	}
+
+	outputFile.close();
+
 }
+

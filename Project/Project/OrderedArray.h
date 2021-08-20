@@ -113,12 +113,10 @@ int length()
      {
          if (this->array[i] == target)
          {
-
              return i;
          }
-
-         return -1;
      }
+     return -1;
  }
 
 };
