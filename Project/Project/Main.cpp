@@ -23,7 +23,7 @@ int main()
 
     //remove index
     cout << "Remove 5 in array: " << array.remove(2) << endl;
-   
+
     cout << "Array: ";
     for (int i = 0; i < array.length(); i++)
     {
@@ -31,7 +31,7 @@ int main()
     }
     cout << endl;
 
-    cout << "Does it Exists? : " << (array.search(30) ? "Exist":" Not found") << endl;
+    cout << "Does it Exists? : " << (array.search(30) ? "Exist" : " Not found") << endl;
 
     //clear method
     array.clear();
@@ -41,7 +41,7 @@ int main()
         cout << array.getElement(i) << " ";
     }
     cout << endl;
-   
+
 
     cout << "Array after clear: ";
     for (int i = 0; i < array.length(); i++)
