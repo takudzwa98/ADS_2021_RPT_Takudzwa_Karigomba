@@ -75,5 +75,22 @@ ifstream secondFile(file2);
 	cout << "Read " << first_leads.size() << " leads from first file and " << second_leads.size() << " from second file" << endl;
 
 	
+	bool found;
+	for (int i = 0; i < first_leads.size(); i++)
+	{
+		Lead lead1 = first_leads[i];
+		found = false;
+		for (int j = 0; j < second_leads.size(); j++)
+		{
+			Lead lead2 = second_leads[j];
 
-	}
+			//compraing 2 no.
+			if (lead1.phone_number.compare(lead2.phone_number) == 0)
+			{
+				found = true;
+			}
+
+		}
+
+		
+}
